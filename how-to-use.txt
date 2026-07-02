@@ -1,0 +1,19 @@
+How to Play Sudoku
+
+Sudoku is a logic-based, combinatorial number-placement puzzle. The objective is to fill a 9x9 grid with digits so that each column, each row, and each of the nine 3x3 subgrids that compose the grid (also called "boxes", "blocks", or "regions") contain all of the digits from 1 to 9.
+
+Basic Rules:
+- Each row must contain all digits from 1 to 9.
+- Each column must contain all digits from 1 to 9.
+- Each of the nine 3x3 subgrids must contain all digits from 1 to 9.
+- No digit can be repeated in the same row, column, or 3x3 subgrid.
+
+How to Use This Sudoku Game:
+1. Starting a New Game: Click the "New Game" button to generate a new Sudoku puzzle.
+2. Selecting a Cell: Click on an empty cell in the grid to select it.
+3. Entering a Number: Once a cell is selected, you can enter a number (1-9) using your keyboard.
+4. Clearing a Cell: To clear a number from a cell, select the cell and press the "Delete" or "Backspace" key.
+5. Checking Your Solution: (If applicable) There might be a "Check" or "Solve" button to verify your current solution or to reveal the solution.
+6. Difficulty Levels: (If applicable) Some versions might offer different difficulty levels. Look for options to choose between Easy, Medium, Hard, etc.
+
+Enjoy playing Sudoku!

@@ -1,0 +1,497 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e0ffff;
+    text-align: center;
+    padding: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+hr {
+    width: 100%;
+    max-width: 1158px; /* Adjusted for two boards */
+    border-top: 2px solid #555;
+    margin: 20px auto;
+}
+
+#heading {
+    color: #4d3232;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#board, #solution-board {
+    width: 564px;
+    height: 546px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-shadow: 0 0 10px rgb(16, 16, 16);
+    border-radius: 10px;
+}
+
+.tile {
+    width: calc(100% / 9);
+    height: calc(546px / 9);
+    border: 1px solid #968f8f;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d3d3d3;
+    color: #2f4f4f;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(16, 16, 16);
+}
+
+.tile:hover {
+    background-color: #a9a9a9;
+}
+
+.hint-tile {
+    background-color: #b2dfdb;
+}
+
+.border-right {
+    border-right: 2px solid black;
+}
+
+.border-bottom {
+    border-bottom: 2px solid black;
+}
+
+#options {
+    width: 564px;
+    max-width: 564px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgb(16, 16, 16);
+    border-radius: 10px;
+}
+
+.option {
+    width: calc(100% / 9);
+    height: 54px;
+    border: 1px solid #968f8f;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d3d3d3;
+    color: #2f4f4f;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+    box-shadow: 0 0 10px rgb(16, 16, 16);
+    border-radius: 10px;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+
+.highlight {
+    background-color: #ffdab9;
+}
+
+.highlightCurCell {
+    background-color: #add8e6;
+}
+
+#reset, #newGame, #undo, #redo, #hint, #solve {
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: rgb(249, 113, 113);
+    border-radius: 5px;
+    transition: border-radius 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    margin: 0 5px;
+}
+
+#reset:hover, #newGame:hover, #undo:hover, #redo:hover, #hint:hover, #solve:hover {
+    border-radius: 10px;
+}
+
+#undo:disabled, #redo:disabled, #hint:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #888;
+}
+
+#chances {
+    color: #4d3232;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #4d3232;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Difficulty Screen */
+#difficulty-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#difficulty-screen.hidden {
+    display: none;
+}
+
+#difficulty-box {
+    background-color: #e0ffff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+#difficulty-box h2 {
+    margin-bottom: 20px;
+    color: #4d3232;
+}
+
+.difficulty-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(249, 113, 113);
+    font-size: 16px;
+}
+
+.difficulty-buttons button:hover {
+    border-radius: 10px;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode #heading {
+    color: #fff;
+}
+
+.dark-mode #board, .dark-mode #solution-board {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .tile {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #777;
+}
+
+.dark-mode .tile:hover {
+    background-color: #777;
+}
+
+.dark-mode .hint-tile {
+    background-color: #004d40;
+}
+
+.dark-mode .border-right {
+    border-right: 2px solid white;
+}
+
+.dark-mode .border-bottom {
+    border-bottom: 2px solid white;
+}
+
+.dark-mode #options {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .option {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #777;
+}
+
+.dark-mode .option:hover {
+    background-color: #777;
+}
+
+.dark-mode .highlight {
+    background-color: #8b4513;
+}
+
+.dark-mode .highlightCurCell {
+    background-color: #4682b4;
+}
+
+.dark-mode #reset,
+.dark-mode #newGame,
+.dark-mode #undo,
+.dark-mode #redo,
+.dark-mode #hint,
+.dark-mode #solve {
+    background-color: #ff6347;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.dark-mode #undo:disabled,
+.dark-mode #redo:disabled,
+.dark-mode #hint:disabled {
+    background-color: #555;
+    color: #aaa;
+    border-color: #777;
+}
+
+.dark-mode hr {
+    border-top: 2px solid #888;
+}
+
+.dark-mode a {
+    color: #add8e6;
+}
+
+.dark-mode a:hover {
+    color: #87ceeb;
+}
+
+.dark-mode #chances {
+    color: #fff;
+}
+
+.dark-mode #difficulty-box {
+    background-color: #333;
+}
+
+.dark-mode #difficulty-box h2 {
+    color: #fff;
+}
+
+.dark-mode .difficulty-buttons button {
+    background-color: #ff6347;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+
+/* Dark mode toggle switch */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* How to Use Page Specific Styles */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+body.dark-mode .container {
+    background-color: #444;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.container h1 {
+    color: #4d3232;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+body.dark-mode .container h1 {
+    color: #fff;
+}
+
+.container h2 {
+    color: #4d3232;
+    font-size: 1.8em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+body.dark-mode .container h2 {
+    color: #fff;
+}
+
+.container p, .container ul, .container ol {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.container ul li, .container ol li {
+    margin-bottom: 8px;
+    padding-left: 10px;
+}
+
+.container a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: rgb(249, 113, 113);
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease, border-radius 0.2s ease;
+}
+
+.container a:hover {
+    background-color: rgb(255, 99, 71);
+    border-radius: 10px;
+}
+
+body.dark-mode .container a {
+    background-color: #ff6347;
+    color: #fff;
+}
+
+body.dark-mode .container a:hover {
+    background-color: #e74c3c;
+}
+
+/* Responsive Adjustments for how-to-use page */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .container h1 {
+        font-size: 2em;
+    }
+
+    .container h2 {
+        font-size: 1.5em;
+    }
+
+    .container p, .container ul, .container ol {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .container h1 {
+        font-size: 1.8em;
+    }
+}
+
+.how-to-use-button {
+    margin-top: 20px;
+}
+
+.how-to-use-button button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(249, 113, 113);
+    font-size: 16px;
+    transition: border-radius 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.how-to-use-button button:hover {
+    border-radius: 10px;
+}
+
+body.dark-mode .how-to-use-button button {
+    background-color: #ff6347;
+    color: #fff;
+    border: 1px solid #fff;
+}
